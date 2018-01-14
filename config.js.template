@@ -1,0 +1,17 @@
+var config = {
+    db: {
+        server: "influx", // "influx" value for Docker-compose installation
+        database: "homemetrics"
+    },
+    mqtt: {
+        server: "mqttbroker", // "mqttbroker" value for Docker-compose installation
+        topics: [
+            "rack-1/temp",
+            "rack-1/hum",
+            "rack-1/power"
+        ]
+    }
+}
+
+
+module.exports = config;

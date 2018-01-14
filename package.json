@@ -1,0 +1,16 @@
+{
+  "name": "homemetrics_gateway",
+  "version": "0.1.0",
+  "description": "Gateway for home-metrics between MQTT broker and InfluxDB",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Michael Vieira <contact+dev[at]mvieira[dot]fr>",
+  "license": "MIT",
+  "dependencies": {
+    "colors": "^1.1.2",
+    "influx": "^5.0.7",
+    "mqtt": "^2.15.1"
+  }
+}

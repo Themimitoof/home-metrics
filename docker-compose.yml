@@ -1,0 +1,39 @@
+version: "3"
+
+services:
+  dashboard:
+    container_name: homemetrics_dashboard
+    image: grafana/grafana
+    restart: always
+    links:
+      - influx:influxdb
+    ports:
+      - 8560:3000
+    volumes:
+      - ./container_content/grafana:/var/lib/grafana
+  
+  influx:
+    container_name: homemetrics_influxdb
+    image: influxdb:alpine
+    restart: always
+    ports:
+      - 127.0.0.1:8086:8086
+    volumes:
+      - ./container_content/influxdb:/var/lib/influxdb
+  
+  broker:
+    container_name: homemetrics_mosquitto
+    image: eclipse-mosquitto
+    restart: always
+    ports:
+      - 1883:1883
+      - 9001:9001
+    
+  
+  gateway:
+    container_name: homemetrics_gateway
+    build: .
+    restart: always
+    links:
+      - influx:influx
+      - broker:mqttbroker
