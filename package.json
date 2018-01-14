@@ -7,6 +7,7 @@
     "start": "node index.js"
   },
   "author": "Michael Vieira <contact+dev[at]mvieira[dot]fr>",
+  "repository": "https://github.com/Themimitoof/home-metrics",
   "license": "MIT",
   "dependencies": {
     "colors": "^1.1.2",
