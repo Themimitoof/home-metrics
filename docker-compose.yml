@@ -2,19 +2,21 @@ version: "3"
 
 services:
   dashboard:
-    container_name: homemetrics_dashboard
     image: grafana/grafana
     restart: always
     links:
-      - influx:influxdb
+      - influx:influx.hm
     ports:
       - 8560:3000
     volumes:
+      - ./conf/grafana/provisioning:/etc/grafana/provisioning:ro
       - ./container_content/grafana:/var/lib/grafana
+    environment:
+      - GF_DEFAULT_INSTANCE_NAME=HomeMetrics
+      - GF_INSTALL_PLUGINS=grafana-piechart-panel,petrslavotinek-carpetplot-panel
   
   influx:
-    container_name: homemetrics_influxdb
-    image: influxdb:alpine
+    image: influxdb:1.5.4-alpine
     restart: always
     ports:
       - 127.0.0.1:8086:8086
@@ -22,18 +24,15 @@ services:
       - ./container_content/influxdb:/var/lib/influxdb
   
   broker:
-    container_name: homemetrics_mosquitto
     image: eclipse-mosquitto
     restart: always
     ports:
       - 1883:1883
       - 9001:9001
     
-  
   gateway:
-    container_name: homemetrics_gateway
-    build: .
+    build: gateway
     restart: always
     links:
-      - influx:influx
-      - broker:mqttbroker
+      - influx:influx.hm
+      - broker:mqtt.hm

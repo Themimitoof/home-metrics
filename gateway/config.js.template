@@ -1,10 +1,10 @@
 var config = {
     db: {
-        server: "influx", // "influx" value for Docker-compose installation
+        server: "influx.hm", // "influx.hm" value for Docker-compose installation
         database: "homemetrics"
     },
     mqtt: {
-        server: "mqttbroker", // "mqttbroker" value for Docker-compose installation
+        server: "mqtt.hm", // "mqtt.hm" value for Docker-compose installation
         topics: [
             "rack-1/temp",
             "rack-1/hum",

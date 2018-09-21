@@ -1,0 +1,9 @@
+apiVersion: 1
+
+datasources:
+  - name: InfluxDB HomeMetrics
+    type: influxdb
+    access: direct
+    url: http://influx.hm:8086
+    orgId: 1
+    database: homemetrics
